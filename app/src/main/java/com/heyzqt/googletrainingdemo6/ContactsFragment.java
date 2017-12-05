@@ -42,7 +42,9 @@ public class ContactsFragment extends Fragment implements AdapterView.OnItemClic
 			ContactsContract.Contacts.LOOKUP_KEY,
 			ContactsContract.Contacts.DISPLAY_NAME_PRIMARY
 	};
-	private String SELECTION = ContactsContract.Contacts.DISPLAY_NAME_PRIMARY + " LIKE ?";
+
+	//private String SELECTION = ContactsContract.Contacts.DISPLAY_NAME_PRIMARY + " LIKE ?";
+	private String SELECTION = ContactsContract.CommonDataKinds.Phone.NUMBER + " LIKE ?";
 	private String mSearchString;
 	private String[] mSelectionArgs = {mSearchString};
 
@@ -91,10 +93,10 @@ public class ContactsFragment extends Fragment implements AdapterView.OnItemClic
 
 	@Override
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-		mSearchString = "";
+		mSearchString = "1840824";
 		mSelectionArgs[0] = "%" + mSearchString + "%";
 		return new CursorLoader(getActivity(),
-				ContactsContract.Contacts.CONTENT_URI,
+				ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
 				PROJECTION,
 				SELECTION,
 				mSelectionArgs,
